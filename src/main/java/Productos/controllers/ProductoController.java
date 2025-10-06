@@ -19,22 +19,17 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    /**
-     * 🔁 Endpoint para traer los productos desde la API y guardarlos en la BD.
-     * URL: http://localhost:8080/productos/sincronizar
-     */
-    @GetMapping("/sincronizar")
-    public String sincronizar() {
-        productoService.sincronizarProductos();
-        return "✅ Productos sincronizados exitosamente desde la API a la BD";
-    }
+    @GetMapping("/guardardb")
+    public String guardardb () {
+        productoService.guardarproducto();
+        return "se ha guardado";
+    };
 
-    /**
-     * 📄 Endpoint para ver los productos almacenados en la BD.
-     * URL: http://localhost:8080/productos
-     */
-    @GetMapping
-    public List<Producto> listarProductos() {
-        return productoService.obtenerProductosDesdeBD();
-    }
+    @GetMapping("/mostrar")
+    public List<Producto> llamarproductos(){
+        productoService.mostrarProductos();
+        return List.of();
+    };
+
+
 }
