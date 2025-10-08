@@ -27,8 +27,8 @@ public class ProductoController {
 
     @GetMapping("/mostrar")
     public List<Producto> llamarproductos(){
-        productoService.mostrarProductos();
-        return List.of();
+        return productoService.mostrarProductos();
+
     };
 
 
