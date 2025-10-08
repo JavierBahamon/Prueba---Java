@@ -1,35 +1,37 @@
 package Productos.service;
 
-import Productos.dao.ProductoDAO;
 import Productos.dao.ProductoRepository;
 import Productos.model.Producto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class ProductoService {
 
     private final ProductoRepository productoRepository;
-    private final ProductoDAO productoDAO;
 
-    public ProductoService(ProductoRepository productoRepository, ProductoDAO productoDAO) {
+
+    public ProductoService(ProductoRepository productoRepository) {
         this.productoRepository = productoRepository;
-        this.productoDAO = productoDAO;
+
     }
 
-    public void guardarproducto() {
-        Producto[] productos = productoDAO.consumoapi();
-
-        for (Producto p : productos){
-            productoRepository.save(p);
-        }
+    public Producto guardarproducto(Producto producto) {
+       return productoRepository.save(producto);
     }
 
-    public List<Producto> mostrarProductos() {
+    public Producto modificarproducto(Producto producto ) {
+        return productoRepository.save(producto);
+    }
+
+    public Optional<Producto> mostrarProductos(int id) {
+        return productoRepository.findById(id);
+    }
+
+    public List<Producto> mostrartodos() {
         return productoRepository.findAll();
     }
 

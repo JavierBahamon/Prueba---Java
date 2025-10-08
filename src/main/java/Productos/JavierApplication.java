@@ -13,9 +13,5 @@ public class JavierApplication {
 		SpringApplication.run(JavierApplication.class, args);
 	}
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
 }

@@ -2,11 +2,10 @@ package Productos.controllers;
 
 import Productos.model.Producto;
 import Productos.service.ProductoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,16 +18,24 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @GetMapping("/guardardb")
-    public String guardardb () {
-        productoService.guardarproducto();
-        return "se ha guardado";
+    @PostMapping("/guardar")
+    public  Producto guardar(@RequestBody Producto producto) {
+        return productoService.guardarproducto(producto);
     };
 
-    @GetMapping("/mostrar")
-    public List<Producto> llamarproductos(){
-        return productoService.mostrarProductos();
+    @PutMapping("/{id}")
+    public  Producto modificar(@PathVariable int id, @RequestBody Producto producto) {
+        return productoService.modificarproducto(producto);
+    };
 
+    @GetMapping("/mostrar/{id}")
+    public Optional<Producto> llamarproductos(@PathVariable int id){
+        return productoService.mostrarProductos(id);
+    };
+
+    @GetMapping("/mostrartodos")
+    public List<Producto> mostrartodos() {
+        return productoService.mostrartodos();
     };
 
 
